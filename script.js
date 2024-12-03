@@ -20,14 +20,32 @@ if (ctx) {
     type: 'line',
     data: {
       labels: ['2000', '2005', '2010', '2015'],
-      datasets: [{
-        label: 'Bevölkerungsentwicklung in Lagos',
-        data: [8029000, 10600000, 13354000, 16086000],
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 2,
-        fill: true
-      }]
+      datasets: [
+        {
+          label: 'Bevölkerungsentwicklung in Lagos',
+          data: [8029000, 10600000, 13354000, 16086000],
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 2,
+          fill: true
+        },
+        {
+          label: 'Bevölkerungsentwicklung in Kinshasa',
+          data: [4700000, 6300000, 7800000, 9500000],
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 2,
+          fill: true
+        },
+        {
+          label: 'Bevölkerungsentwicklung in Abuja',
+          data: [159900, 276500, 403700, 590400],
+          backgroundColor: 'rgba(255, 159, 64, 0.2)',
+          borderColor: 'rgba(255, 159, 64, 1)',
+          borderWidth: 2,
+          fill: true
+        }
+      ]
     },
     options: {
       responsive: true,
