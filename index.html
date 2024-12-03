@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lagos – Stadtentwicklung und Herausforderungen</title>
+  <!-- Verknüpfung der CSS-Datei -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Einbindung von Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <!-- Einbindung von Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Header-Bereich -->
+  <header>
+    <h1>Lagos – Stadtentwicklung und Herausforderungen</h1>
+    <p>Autor: Silas Heineken</p>
+    <p>Philipp-Melanchthon-Gymnasium, 12. Klasse</p>
+    <p>Fach: Geografie Q3 bei Frau Beilke</p>
+  </header>
+
+  <!-- Navigationsleiste -->
+  <nav>
+    <ul>
+      <li><a href="#aufgabe1">Aufgabe 1: Lage und Bedeutung</a></li>
+      <li><a href="#aufgabe2">Aufgabe 2: Wachstumsraten und Strukturen</a></li>
+      <li><a href="#aufgabe3">Aufgabe 3: Eko Atlantic City</a></li>
+      <li><a href="#aufgabe4">Aufgabe 4: Herausforderungen und Potenziale</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hauptinhalt -->
+  <main>
+    <!-- Aufgabe 1 -->
+    <section id="aufgabe1">
+        <h2>Aufgabe 1: Lage und Bedeutung der Stadt Lagos</h2>
+        <h3>Lage von Lagos</h3>
+        <p>Lagos liegt im Südwesten Nigerias an der Küste des Atlantischen Ozeans und gehört zur tropischen Klimazone. Die Stadt erstreckt sich entlang der Lagos Lagoon und besteht aus dem Festland und mehreren Inseln, darunter Lagos Island und Victoria Island, die das wirtschaftliche Zentrum bilden.</p>
+      
+        <!-- Interaktive Karte -->
+        <div id="map" style="width: 100%; height: 400px;"></div>
+
+        <!-- Infoboxen zur geografischen Lage und Bedeutung -->
+        <div class="infobox-container">
+          <div class="infobox">
+            <h4>Geografische Lage</h4>
+            <p>Lagos liegt auf etwa 6,5° nördlicher Breite und 3,4° östlicher Länge. Die Stadt umfasst mehrere Inseln, die durch Brücken verbunden sind, und grenzt im Süden an den Atlantik.</p>
+          </div>
+          <div class="infobox">
+            <h4>Klimatische Bedingungen</h4>
+            <p>Das Klima in Lagos ist tropisch, mit einer Regenzeit von April bis Oktober. Die hohe Luftfeuchtigkeit und die Lage an der Küste beeinflussen das tägliche Leben stark.</p>
+          </div>
+          <div class="infobox">
+            <h4>Wirtschaftliche Bedeutung</h4>
+            <p>Lagos ist das wirtschaftliche Herz Nigerias und der größte Hafen Westafrikas. Die Stadt ist ein wichtiges Handels- und Finanzzentrum, mit vielen internationalen Unternehmen und einem schnell wachsenden Dienstleistungssektor.</p>
+          </div>
+        </div>
+
+      
+        <!-- Historische Zeitleiste zur Entwicklung von Lagos -->
+        <h3>Historische Entwicklung von Lagos</h3>
+        <div id="timeline">
+          <ul>
+            <li><strong>1472:</strong> Portugiesische Entdecker erreichen die Küste von Lagos.</li>
+            <li><strong>1861:</strong> Lagos wird von Großbritannien annektiert und entwickelt sich zu einer wichtigen Kolonialstadt.</li>
+            <li><strong>1960:</strong> Nigeria erlangt die Unabhängigkeit, Lagos wird zur Hauptstadt.</li>
+            <li><strong>1991:</strong> Die Hauptstadt wird nach Abuja verlegt, aber Lagos bleibt das wirtschaftliche Zentrum des Landes.</li>
+          </ul>
+        </div>
+      
+        <!-- Zusätzlicher Text zur Bedeutung von Lagos -->
+        <p>Die Lage von Lagos an der Küste und am Lagos Lagoon ermöglicht einen einfachen Zugang zum Atlantik, was den Hafen von Lagos zu einem der bedeutendsten in ganz Afrika macht. Die Stadt ist ein Schmelztiegel der Kulturen, der sowohl traditionelle als auch moderne Einflüsse vereint. Lagos ist bekannt für seine dynamische Musik- und Filmszene, die weltweit Anerkennung findet und die kulturelle Bedeutung der Stadt stärkt.</p>
+      </section>
+
+    <!-- Aufgabe 2 -->
+    <section id="aufgabe2">
+        <h2>Aufgabe 2: Wachstumsraten und sozioökonomische Strukturen</h2>
+        <!-- Teil a: Wachstumsraten und Index of Primacy -->
+        <h3>Teil a: Berechnung der Wachstumsraten und des Index of Primacy</h3>
+        <p>Die Berechnung der Wachstumsraten von Lagos zeigt, dass die Stadt seit den 2000er Jahren eine der am schnellsten wachsenden Städte weltweit ist. Dies ist auf hohe Geburtenraten und die Migration vom ländlichen in städtische Gebiete zurückzuführen. Der Index of Primacy zeigt, wie dominant Lagos im Vergleich zu anderen Städten Nigerias ist, indem das Verhältnis der Bevölkerungsgröße zu anderen großen Städten dargestellt wird.</p>
+      
+        <!-- Diagramm für Bevölkerungswachstum -->
+        <div class="chart-container">
+          <canvas id="populationChart"></canvas>
+        </div>
+        <script>
+          var ctx = document.getElementById('populationChart').getContext('2d');
+          var populationChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: ['2000', '2005', '2010', '2015', '2020'],
+              datasets: [
+                {
+                  label: 'Bevölkerungsentwicklung in Lagos',
+                  data: [7281000, 8859000, 10441000, 12239000, 14368000],
+                  backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 2,
+                  fill: true
+                },
+                {
+                  label: 'Bevölkerungsentwicklung in Kinshasa',
+                  data: [4700000, 6300000, 7800000, 9500000, 11300000],
+                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 2,
+                  fill: true
+                },
+                {
+                  label: 'Bevölkerungsentwicklung in Abuja',
+                  data: [159900, 276500, 403700, 590400, 776300],
+                  backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                  borderColor: 'rgba(255, 159, 64, 1)',
+                  borderWidth: 2,
+                  fill: true
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                y: {
+                  beginAtZero: false,
+                  ticks: {
+                    callback: function(value) {
+                      return value / 1000000 + ' Mio';
+                    }
+                  }
+                }
+              }
+            }
+          });
+        </script>
+      
+        <!-- Tabelle für Index of Primacy -->
+        <h4>Index of Primacy</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Stadt</th>
+              <th>Bevölkerung (2021 in Millionen)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lagos</td>
+              <td>14,86</td>
+            </tr>
+            <tr>
+              <td>Zweitgrößte Stadt (Kano)</td>
+              <td>4,1</td>
+            </tr>
+            <tr>
+              <td>Drittgrößte Stadt (Ibadan)</td>
+              <td>3,65</td>
+            </tr>
+            <tr>
+              <td>Viertgrößte Stadt (Abuja)</td>
+              <td>3,46</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Der Index of Primacy für Lagos beträgt 14,86 / 4,1 ≈ 3,62. Dies bedeutet, dass Lagos etwa viermal so groß ist wie die nächstgrößte Stadt Nigerias, was die enorme Bedeutung und Dominanz von Lagos im städtischen System des Landes verdeutlicht.</p>
+      
+        <!-- Teil b: Sozioökonomische Strukturen -->
+        <h3>Teil b: Analyse der sozioökonomischen Strukturen</h3>
+        <p>Die sozioökonomischen Strukturen von Lagos sind durch große Ungleichheiten geprägt. Die Stadt verfügt über einige der wohlhabendsten Gebiete Afrikas, wie Victoria Island und Lekki, aber auch über ausgedehnte informelle Siedlungen, in denen viele Menschen ohne Zugang zu grundlegender Infrastruktur wie sauberem Wasser und sanitären Einrichtungen leben.</p>
+        
+        <!-- Vergleich der sozioökonomischen Strukturen -->
+        <div class="chart-container">
+          <canvas id="socioChart"></canvas>
+        </div>
+        <script>
+          var ctx2 = document.getElementById('socioChart').getContext('2d');
+          var socioChart = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+              labels: ['Armutsquote (%)', 'Informeller Sektor (%)', 'Arbeitslosenquote (%)', 'Bildungsniveau (tertiärer Abschluss, %)'],
+              datasets: [
+                {
+                  label: 'Lagos',
+                  data: [65, 75, 30, 10],
+                  backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 2
+                },
+                {
+                  label: 'Johannesburg',
+                  data: [20, 30, 25, 20],
+                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 2
+                },
+                {
+                  label: 'Berlin',
+                  data: [15, 10, 5, 30],
+                  backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                  borderColor: 'rgba(255, 159, 64, 1)',
+                  borderWidth: 2
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    callback: function(value) {
+                      return value + '%';
+                    }
+                  }
+                }
+              }
+            }
+          });
+        </script>
+      
+        <p>Der Vergleich der sozioökonomischen Strukturen zeigt, dass Lagos im Vergleich zu Johannesburg und Berlin erhebliche Herausforderungen hat, insbesondere in Bezug auf die Armutsquote und den informellen Sektor. Gleichzeitig gibt es großes wirtschaftliches Potenzial, das sich in der hohen Anzahl von Menschen im erwerbsfähigen Alter und dem Zugang zu Bildung zeigt.</p>
+      </section>
+
+      <section id="aufgabe3">
+        <h2>Aufgabe 3: Beurteilung des Projekts „Eko Atlantic City“</h2>
+        <p>
+          Eko Atlantic City ist ein großangelegtes Bauprojekt, das auf einer künstlich angelegten Landmasse vor der Küste von Lagos errichtet wird. Ziel des Projekts ist es, Lagos zu einem internationalen Finanz- und Geschäftszentrum zu machen und den durch den Klimawandel bedingten Küstenschutz zu verbessern.
+        </p>
+      
+        <h3>Vorteile von Eko Atlantic City</h3>
+        <ul>
+          <li>Schaffung neuer Arbeitsplätze in der Bau- und Dienstleistungsbranche</li>
+          <li>Verbesserung des Küstenschutzes durch eine massive Barriere gegen Überschwemmungen</li>
+          <li>Neue Infrastruktur, die den Standard internationaler Städte erfüllt</li>
+          <li>Förderung ausländischer Investitionen und internationaler Geschäftsbeziehungen</li>
+        </ul>
+      
+        <h3>Nachteile von Eko Atlantic City</h3>
+        <ul>
+          <li>Verdrängung von lokalen Gemeinschaften, insbesondere informelle Siedlungen</li>
+          <li>Hohe Kosten, die staatliche Ressourcen beanspruchen</li>
+          <li>Umweltauswirkungen durch die Umgestaltung der Küstenlandschaft</li>
+          <li>Potenzielle soziale Ungleichheiten durch exklusive Wohn- und Geschäftsräume</li>
+        </ul>
+      
+        <h3>Zusammenfassung in einer Tabelle</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Kriterium</th>
+              <th>Bewertung</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Arbeitsplätze</td>
+              <td>Positiv</td>
+            </tr>
+            <tr>
+              <td>Küstenschutz</td>
+              <td>Positiv</td>
+            </tr>
+            <tr>
+              <td>Umweltbelastung</td>
+              <td>Negativ</td>
+            </tr>
+            <tr>
+              <td>Soziale Ungleichheit</td>
+              <td>Negativ</td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <h3>Fakten und Zahlen</h3>
+        <p>
+          Das Projekt wird voraussichtlich eine Fläche von 10 Quadratkilometern umfassen und Platz für bis zu 250.000 Bewohner und 150.000 Arbeitsplätze bieten. Der Bau erfordert etwa 100 Millionen Kubikmeter Sand, der aus der umliegenden Umgebung entnommen wird.
+        </p>
+      
+        <h3>Urteil</h3>
+        <p>
+          Unter dem Aspekt der nachhaltigen Stadtentwicklung ist Eko Atlantic City sowohl eine Chance als auch eine Herausforderung. Während das Projekt wichtige wirtschaftliche und infrastrukturelle Vorteile bietet, gefährdet es durch ökologische und soziale Probleme die langfristige Nachhaltigkeit. Eine integrativere Planung, die sowohl lokale Gemeinschaften als auch ökologische Aspekte berücksichtigt, könnte das Projekt in eine nachhaltigere Richtung lenken.
+        </p>
+      </section>
+
+      <!-- Aufgabe 4 -->
+    <section id="aufgabe4">
+      <h2>Aufgabe 4: Herausforderungen und Potenziale der zukünftigen Stadtentwicklung</h2>
+      <p>
+        Lagos steht vor vielfältigen Herausforderungen und bietet gleichzeitig immense Potenziale für die zukünftige Stadtentwicklung. Die folgende Concept Map visualisiert die zentralen Aspekte und ihre Verbindungen.
+      </p>
+      <div id="conceptMapContainer">
+        <svg id="conceptMap" width="800" height="600"></svg>
+      </div>
+    </section>
+  </main>
+
+  <!-- Quellenangaben -->
+  <h3>Quellenangaben (Stand: 03. Dezember 2024)</h3>
+  <ul>
+    <li><a href="https://www.macrotrends.net/global-metrics/cities/22007/lagos/population" target="_blank">Bevölkerungsdaten für Lagos - Macrotrends</a></li>
+    <li><a href="https://www.swp-berlin.org/publikation/mta-spotlight-33-ueber-die-hauptstaedte-hinaus" target="_blank">Bevölkerungsdaten für Kinshasa - SWP Berlin</a></li>
+    <li><a href="https://en.wikipedia.org/wiki/Abuja" target="_blank">Bevölkerungsdaten für Abuja - Wikipedia</a></li>
+    <li><a href="https://de.statista.com/statistik/daten/studie/1105188/umfrage/groesste-staedte-in-nigeria/" target="_blank">Größte Städte Nigerias - Statista</a></li>
+    <li><a href="https://www.compareyourcountry.org/key-indicators/de" target="_blank">Sozioökonomische Indikatoren - Compare Your Country</a></li>
+    <li><a href="https://www.bpb.de/kurz-knapp/zahlen-und-fakten/sozialbericht-2024/553049/internationaler-vergleich/" target="_blank">Internationale Vergleiche - BPB</a></li>
+    <li><a href="https://de.statista.com/outlook/co/soziooekonomische-indikatoren/deutschland" target="_blank">Sozioökonomische Indikatoren - Statista</a></li>
+  </ul>
+
+  <!-- Footer-Bereich -->
+  <footer>
+  </footer>
+
+  <!-- Einbindung von Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Einbindung von D3.js für Diagramme -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <!-- Verknüpfung der JavaScript-Datei -->
+  <script src="script.js"></script>
+</body>
+</html>
